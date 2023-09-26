@@ -1,0 +1,1 @@
+target_sources(${PROJECT_NAME} PRIVATE color.c colormap.c)

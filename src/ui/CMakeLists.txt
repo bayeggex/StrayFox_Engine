@@ -1,1 +1,1 @@
-target_sources(${PROJECT_NAME} ui.c)
+target_sources(${PROJECT_NAME} PRIVATE ui.c)

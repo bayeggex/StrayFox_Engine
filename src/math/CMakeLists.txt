@@ -1,0 +1,1 @@
+target_sources(${PROJECT_NAME} PRIVATE math.c Point.c Vector2.c Vector3.c)
