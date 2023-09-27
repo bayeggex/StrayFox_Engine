@@ -2,7 +2,7 @@
 
 int main()
 {
-    Window window;
-    WindowCreate(&window);
+    WindowManagerInit();
+    WindowCreate();
     return 0;
 }

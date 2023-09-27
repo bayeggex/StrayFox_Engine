@@ -5,7 +5,7 @@
 
 /// @brief holds window id for window management
 /// @param id is used identify window
-/// @param is used to access window
+/// @param handle is used to access window
 typedef struct wm_Window_t
 {
     unsigned int id;
