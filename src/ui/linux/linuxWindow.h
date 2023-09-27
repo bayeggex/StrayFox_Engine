@@ -1,6 +1,6 @@
 #ifndef LINUX_WINDOW_H
 #define LINUX_WINDOW_H
 
-void LinuxWindowCreate();
+void WindowCreate();
 
 #endif // LINUX_WINDOW_H

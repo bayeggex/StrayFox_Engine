@@ -2,6 +2,7 @@
 
 int main()
 {
-    LinuxWindowCreate();
+    Window window;
+    WindowCreate(&window);
     return 0;
 }

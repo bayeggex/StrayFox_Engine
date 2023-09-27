@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "linuxwindow.h": "c",
-        "stdio.h": "c",
-        "keyutils.h": "c",
-        "keysymdef.h": "c"
-    }
-}

@@ -4,40 +4,52 @@
 
 #include "linuxWindow.h"
 
-void LinuxWindowCreate()
+static Display *wm_display;
+static int wm_screen;
+static Window wm_root;
+
+typedef struct LinuxWindow_t
+{
+    Window windowPointer;
+} LinuxWindow;
+
+void WindowManagerInit()
 {
     // get display, screen and root window
-    Display *display = XOpenDisplay(NULL);
-    int screen = DefaultScreen(display);
-    Window root = RootWindow(display, screen);
+    wm_display = XOpenDisplay(NULL);
+    wm_screen = DefaultScreen(wm_display);
+    wm_root = RootWindow(wm_display, wm_screen);
+}
 
+void WindowCreate(Window *window)
+{
     // create window
-    Window window = XCreateSimpleWindow(display, root, 0, 0, 200, 200, 1, BlackPixel(display, screen), WhitePixel(display, screen));
+    window = XCreateSimpleWindow(wm_display, wm_root, 0, 0, 200, 200, 1, BlackPixel(wm_display, wm_screen), WhitePixel(wm_display, wm_screen));
 
     // select input events
-    XSelectInput(display, window, ExposureMask | KeyPressMask);
+    XSelectInput(wm_display, window, ExposureMask | KeyPressMask);
 
-    XMapWindow(display, window);
-    XFlush(display);
+    XMapWindow(wm_display, window);
+    XFlush(wm_display);
 
     XEvent event;
     while (1)
     {
-        XNextEvent(display, &event);
+        XNextEvent(wm_display, &event);
 
         // print button names
         if (event.type == KeyPress)
         {
-            if (event.xkey.keycode == XKeysymToKeycode(display, XK_Escape))
+            if (event.xkey.keycode == XKeysymToKeycode(wm_display, XK_Escape))
             {
                 break;
             }
         }
     }
 
-    XUnmapWindow(display, window);
-    XDestroyWindow(display, window);
-    XCloseDisplay(display);
+    XUnmapWindow(wm_display, window);
+    XDestroyWindow(wm_display, window);
+    XCloseDisplay(wm_display);
 
     return;
 }
