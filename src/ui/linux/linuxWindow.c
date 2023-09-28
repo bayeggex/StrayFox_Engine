@@ -28,8 +28,13 @@ void WindowCreate()
     XSetWindowAttributes windowAttributes;
     windowAttributes.backing_store = Always;
 
-    // create window
+    // new window
     Window window = XCreateWindow(wm_display, wm_root, 0, 0, 200, 200, 1, CopyFromParent, InputOutput, CopyFromParent, 0, NULL);
+
+    // set WM_PROTOCOLS atom
+    Atom wm_protocols = XInternAtom(wm_display, "WM_PROTOCOLS", False);
+    Atom wm_delete_window = XInternAtom(wm_display, "WM_DELETE_WINDOW", False);
+    XSetWMProtocols(wm_display, window, &wm_delete_window, 1);
 
     // apply window attributes
     XChangeWindowAttributes(wm_display, window, CWBackingStore, &windowAttributes);
@@ -37,16 +42,25 @@ void WindowCreate()
     // select events to listen to
     XSelectInput(wm_display, window, ExposureMask | KeyPressMask);
 
+    // create double buffer
+    Pixmap buffer = XCreatePixmap(wm_display, window, 200, 200, DefaultDepth(wm_display, DefaultScreen(wm_display)));
 
-    // create graphics context
+    // new graphics context
     GC gc = XCreateGC(wm_display, window, 0, NULL);
-    
-    // draw a blue rectangle
-    XSetForeground(wm_display, gc, 0x00ff0000);
-    XFillRectangle(wm_display, window, gc, 20, 20, 10, 10);
 
+    // clear window
+    XClearWindow(wm_display, window);
+
+    // draw a red circle
+    XSetForeground(wm_display, gc, 0x00ff0000);
+    XFillArc(wm_display, buffer, gc, 20, 20, 50, 50, 0, 360 * 64);
+
+    // copy double buffer to window
+    XCopyArea(wm_display, buffer, window, DefaultGC(wm_display, DefaultScreen(wm_display)), 0, 0, 200, 200, 0, 0);
+
+    // map window
     XMapWindow(wm_display, window);
-    
+
     // swap buffers
     XFlush(wm_display);
 
@@ -55,17 +69,28 @@ void WindowCreate()
     while (1)
     {
         XNextEvent(wm_display, &event);
-        
-        // print button names
-        if (event.type == KeyPress)
+
+        // handle events
+        switch (event.type)
         {
+        case Expose:
+            // redraw window
+            XCopyArea(wm_display, buffer, window, DefaultGC(wm_display, DefaultScreen(wm_display)), 0, 0, 200, 200, 0, 0);
+            break;
+
+        case KeyPress:
             if (event.xkey.keycode == XKeysymToKeycode(wm_display, XK_Escape))
-            {
-                break;
-            }
+                goto cleanup;
+            break;
+
+        case ClientMessage:
+            if (event.xclient.message_type == wm_protocols && event.xclient.data.l[0] == (long)wm_delete_window)
+                goto cleanup;
+            break;
         }
     }
 
+cleanup:
     // clean up
     XFreeGC(wm_display, gc);
 
