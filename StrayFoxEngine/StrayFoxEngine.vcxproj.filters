@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kaynak Dosyalar">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Üst Bilgi Dosyaları">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Kaynak Dosyaları">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Root">
+      <UniqueIdentifier>{682f95a3-e8ab-482b-87fe-1a3300903e4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine">
+      <UniqueIdentifier>{dbfa3311-485b-4782-8f3f-58e898a7f1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\include">
+      <UniqueIdentifier>{cf328d20-38c2-4f2b-9839-92d12e30dbb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\include\StrayRenderEngine">
+      <UniqueIdentifier>{7cd65926-c972-41f0-bd63-62c62969fc13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\include\StrayRenderEngine\Window">
+      <UniqueIdentifier>{cd16b89f-e036-473c-ac80-18f02f29dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\Source">
+      <UniqueIdentifier>{d3745278-9d6e-46c5-80b4-5ae3f07c5bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\Source\StrayRenderEngine">
+      <UniqueIdentifier>{d86c790e-f536-4701-ae72-c1e46ff6d55d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\Source\StrayRenderEngine\Window">
+      <UniqueIdentifier>{87b754ab-c21e-43ce-bafd-7d691fcc4e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\include\StrayRenderEngine\RootEngine">
+      <UniqueIdentifier>{036f1210-ee2c-4f85-9a50-2c8241cb3fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StrayRenderEngine\Source\StrayRenderEngine\RootEngine">
+      <UniqueIdentifier>{5e4cfee8-f45b-475c-9951-90a224636269}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Owindow.cpp">
+      <Filter>StrayRenderEngine\Source\StrayRenderEngine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Root</Filter>
+    </ClCompile>
+    <ClCompile Include="engineRoot.cpp">
+      <Filter>StrayRenderEngine\Source\StrayRenderEngine\RootEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Owindow.h">
+      <Filter>StrayRenderEngine\include\StrayRenderEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="engineRoot.h">
+      <Filter>StrayRenderEngine\include\StrayRenderEngine\RootEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
